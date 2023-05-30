@@ -5,7 +5,7 @@ using UnityEngine;
 public class GroundShaker : MonoBehaviour
 {
     //How strong is the earthquake?
-    public float magnitude = 4f; //Not the same magnitude people talk about in an actual earthquakes
+    public float magnitude = 10f; //Not the same magnitude people talk about in an actual earthquakes
     public float slowDownFactor = 0.01f;
 
     private Vector3 originalPosition;
@@ -23,8 +23,9 @@ public class GroundShaker : MonoBehaviour
     {
         //Shake the ground with some random values
         Vector2 randomPos = Random.insideUnitCircle * magnitude;
-
         float randomY = Random.Range(-1f, 1f) * magnitude;
+        Debug.Log(randomPos);
+        Debug.Log(randomY);
 
         //Will generate a more realistic earthquake - otherwise the ground will jitter and not shake
         float randomX = Mathf.Lerp(transform.position.x, randomPos.x, Time.fixedTime * slowDownFactor);
