@@ -20,16 +20,10 @@ TagManager:
   - switchOn
   - stone
   - target
-  - badFood
-  - food
-  - walkableSurface
-  - symbol_X
-  - symbol_O
-  - symbol_X_Goal
-  - symbol_O_Goal
-  - purpleAgent
-  - purpleGoal
-  - tile
+  - Ground
+  - Obstacle
+  - Goal
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -40,9 +34,9 @@ TagManager:
   - 
   - 
   - invisible
-  - 
-  - 
-  - 
+  - Obstacle
+  - Goal
+  - Wall
   - 
   - 
   - 
