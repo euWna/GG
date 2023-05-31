@@ -104,7 +104,8 @@ public class Controller : Agent
                 break;
         }
         transform.Rotate(rot, Time.deltaTime * 300f);
-        rb.AddForce(dir * 0.5f, ForceMode.VelocityChange);
+        //rb.AddForce(dir * 0.5f, ForceMode.);
+        transform.position += dir * 10f * Time.deltaTime;
 
         AddReward(-1f / MaxStep);
     }

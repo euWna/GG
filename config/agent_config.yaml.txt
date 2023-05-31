@@ -1,0 +1,7 @@
+behaviors:
+  HideAgent:
+    vectorObservationSize: 10
+    cameraResolutions:
+      - height: 84
+        width: 84
+        blackAndWhite: true
