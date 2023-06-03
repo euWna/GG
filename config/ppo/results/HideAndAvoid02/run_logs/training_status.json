@@ -1,0 +1,38 @@
+{
+    "HideAndAvoid02": {
+        "checkpoints": [
+            {
+                "steps": 499996,
+                "file_path": "results\\HideAndAvoid02\\HideAndAvoid02\\HideAndAvoid02-499996.onnx",
+                "reward": -2.3400634342715856,
+                "creation_time": 1685598729.6386676,
+                "auxillary_file_paths": [
+                    "results\\HideAndAvoid02\\HideAndAvoid02\\HideAndAvoid02-499996.pt"
+                ]
+            },
+            {
+                "steps": 500048,
+                "file_path": "results\\HideAndAvoid02\\HideAndAvoid02\\HideAndAvoid02-500048.onnx",
+                "reward": -2.2115453996441583,
+                "creation_time": 1685598729.736667,
+                "auxillary_file_paths": [
+                    "results\\HideAndAvoid02\\HideAndAvoid02\\HideAndAvoid02-500048.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 500048,
+            "file_path": "results\\HideAndAvoid02\\HideAndAvoid02.onnx",
+            "reward": -2.2115453996441583,
+            "creation_time": 1685598729.736667,
+            "auxillary_file_paths": [
+                "results\\HideAndAvoid02\\HideAndAvoid02\\HideAndAvoid02-500048.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.0.1"
+    }
+}
