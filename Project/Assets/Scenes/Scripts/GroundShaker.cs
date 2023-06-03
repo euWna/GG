@@ -5,7 +5,7 @@ using UnityEngine;
 public class GroundShaker : MonoBehaviour
 {
     //How strong is the earthquake?
-    public static float magnitude; //Not the same magnitude people talk about in an actual earthquakes
+    public static float magnitude = 4; //Not the same magnitude people talk about in an actual earthquakes
     public float slowDownFactor = 0.1f;
 
     private Vector3 originalPosition;
