@@ -4,26 +4,18 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - agent
-  - iWall
-  - wall
-  - pit
-  - frozenAgent
   - ball
   - blueGoal
   - blueAgent
   - goal
   - ground
-  - block
-  - switchOff
-  - pyramid
-  - switchOn
   - stone
   - target
   - Ground
   - Obstacle
   - Goal
   - Wall
+  - Bunker
   layers:
   - Default
   - TransparentFX
@@ -32,7 +24,7 @@ TagManager:
   - Water
   - UI
   - 
-  - 
+  - bunker
   - invisible
   - Obstacle
   - Goal
