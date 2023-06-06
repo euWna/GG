@@ -57,7 +57,7 @@ public class Controller : Agent
                     float rayHitDistance = rayOutputs[i].HitFraction * scaledRayLength;
 
                     //중돌한 오브젝트가 낙하물 && 일정 거리 이내로 들어온 경우(충돌했다고 볼만큼)
-                    if(goHit.tag == "Obstacle" && rayHitDistance < 2.4f && isHide == false)
+                    if (goHit.tag == "Obstacle" && rayHitDistance < 2.4f && isHide == false)
                     {
                         Debug.Log("boom!!!");
                         //리워드 -1
@@ -75,7 +75,7 @@ public class Controller : Agent
     public void HideNew()
     {
         //진도가 4 이상일 경우에만 숨기
-        if(GroundShaker.magnitude >= 4 && HideDone == false)
+        if (GroundShaker.magnitude >= 4 && HideDone == false)
         {
             SearchForBunker();
             //벙커를 찾은 경우
@@ -85,13 +85,26 @@ public class Controller : Agent
     {
         RayCastInfo(m_rayPerceptionSensorComponent3D);
         HideNew();
+
+        if (Mathf.Abs(rb.velocity.x) > 40)
+        {
+            rb.velocity = new Vector3(Mathf.Sign(rb.velocity.x) * 40, rb.velocity.y, rb.velocity.z);
+        }
+        else if (Mathf.Abs(rb.velocity.z) > 40)
+        {
+            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, Mathf.Sign(rb.velocity.z) * 40);
+        }
+        else if(Mathf.Abs(rb.velocity.y) > 7)
+        {
+            rb.velocity = new Vector3(rb.velocity.x, Mathf.Sign(rb.velocity.y) * 7, rb.velocity.z);
+        }
     }
 
     public override void OnEpisodeBegin()
     {
         this.transform.localPosition = startPoint.transform.localPosition;
         this.transform.localEulerAngles = new Vector3(0, 0, 0);
-        //bunker.gameObject.transform.localPosition = new Vector3(Random.Range(-16, 2), 0, Random.Range(-16, 2));
+
         GroundShaker.magnitude = Random.Range(1, 9);
         isHide = false;
         rb.velocity = Vector3.zero;
@@ -102,7 +115,7 @@ public class Controller : Agent
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Wall"))
+        if (collision.gameObject.CompareTag("Wall"))
         {
             Debug.Log("Hit Wall");
             //벽에 충돌하면 리워드 -0.5
@@ -120,7 +133,7 @@ public class Controller : Agent
         {
             //숨어있는 상태에서 벙커에 충돌한 경우
             //(단순히 이동중 벙커에 부딫힌 경우와 구분하기 위한 조건임)
-            if(bunkerFind == true && HideDone == false)
+            if (bunkerFind == true && HideDone == false)
             {
                 Debug.Log("Hide");
                 isHide = true;
@@ -130,18 +143,24 @@ public class Controller : Agent
                 m_Animator.SetTrigger("Rolling");
                 Invoke("Stand", 3f);
                 HideDone = true;
-                nearestBunker = null;
-                //nearestBunker = null;
-                //Invoke("EndEpisode",1f);
-                //nearestBunker = null;
-                //m_Animator.SetTrigger("Rolling");
+               
             }
+        }
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("stair"))
+        {
+            rb.AddForce(new Vector3(0, 0, -30) * 1f * 0.4f, ForceMode.VelocityChange);
         }
     }
 
     public void Stand()
     {
         m_Animator.SetTrigger("Standing");
+        nearestBunker.GetComponent<Bunker>().isOccupied = false;
+        nearestBunker = null;
         isHide = false;
     }
 
@@ -155,7 +174,7 @@ public class Controller : Agent
         var dir = Vector3.zero;
         var rot = Vector3.zero;
         var action = actions.DiscreteActions[0];
-        switch(action)
+        switch (action)
         {
             case 1:
                 dir = transform.forward * 1f;
@@ -172,18 +191,13 @@ public class Controller : Agent
         }
         transform.Rotate(rot, Time.deltaTime * 300f);
 
-       
-        rb.AddForce(dir * 0.4f, ForceMode.VelocityChange);
 
-        if(Mathf.Abs(rb.velocity.x) > 40 || Mathf.Abs(rb.velocity.z) > 40)
-        {
-            rb.velocity = new Vector3(Mathf.Sign(rb.velocity.x) * 40, rb.velocity.y, Mathf.Sign(rb.velocity.z) * 40);
-        }
+        rb.AddForce(dir * 0.4f, ForceMode.VelocityChange);
 
         //this.transform.position += transform.forward * Time.deltaTime * 5f;
         m_Animator.SetBool("IsRun", rb.velocity != Vector3.zero);
 
-        if(nearestBunker != null)
+        if (nearestBunker != null)
         {
             this.transform.LookAt(nearestBunker.transform);
         }
@@ -195,21 +209,23 @@ public class Controller : Agent
     private void SearchForBunker()
     {
         //플레이어 주변 벙커(콜라이더) 탐색
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 13.5f); 
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 13.5f);
 
         foreach (Collider collider in colliders)
         {
             //감지된 콜라이더가 벙커일 경우
-            if(collider.CompareTag("Bunker"))
+            if (collider.CompareTag("Bunker"))
             {
-                //벙커 발견 완료
-                if(HideDone == false)
+                if(!collider.gameObject.GetComponent<Bunker>().isOccupied)
                 {
-                    nearestBunker = collider.gameObject;
-                    Debug.Log("BunkerFInd");
-                    bunkerFind = true;
+                    if (HideDone == false)
+                    {
+                        collider.gameObject.GetComponent<Bunker>().isOccupied = true;
+                        nearestBunker = collider.gameObject;
+                        Debug.Log("BunkerFInd");
+                        bunkerFind = true;
+                    }
                 }
-                //this.transform.LookAt(nearestBunker.transform);
             }
 
         }
@@ -238,6 +254,6 @@ public class Controller : Agent
         {
             discreteActionsOut[0] = 3;
         }
-        
+
     }
 }
