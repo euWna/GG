@@ -152,7 +152,7 @@ public class Controller : Agent
     {
         if (collision.gameObject.CompareTag("stair"))
         {
-            rb.AddForce(new Vector3(0, 0, -30) * 1f * 0.4f, ForceMode.VelocityChange);
+            rb.AddForce(new Vector3(0, 0, -34) * 1f * 0.4f, ForceMode.VelocityChange);
         }
     }
 
