@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float m_fSpeed = 3.0f;
+    public float m_fSpeed = 8.0f;
     public Transform m_CameraTransform;
 
     private Rigidbody m_Rigidbody;
@@ -39,23 +39,27 @@ public class Player : MonoBehaviour
         if(Input.GetKey(KeyCode.W))
         {
             m_vMoveVec += m_CameraTransform.forward;
+            m_fTotalSpeed = m_fSpeed;
             m_bIsRun = true;
         }
         else if(Input.GetKey(KeyCode.S))
         {
             m_vMoveVec -= m_CameraTransform.forward;
+            m_fTotalSpeed = m_fSpeed;
             m_bIsRun = true;
 
         }
         if (Input.GetKey(KeyCode.D))
         {
             m_vMoveVec += m_CameraTransform.right;
+            m_fTotalSpeed = m_fSpeed;
             m_bIsRun = true;
 
         }
         else if(Input.GetKey(KeyCode.A))
         {
             m_vMoveVec -= m_CameraTransform.right;
+            m_fTotalSpeed = m_fSpeed;
             m_bIsRun = true;
 
         }
@@ -69,17 +73,18 @@ public class Player : MonoBehaviour
     }
     private void Move()
     {
-        m_fTotalSpeed = m_fSpeed;
+        m_fTotalSpeed = 0f;
         Get_KeyInput();
         Run();
-        transform.position += m_vMoveVec * m_fTotalSpeed * Time.deltaTime;
+        
         transform.LookAt(transform.position + m_vMoveVec);
-        //m_Rigidbody.AddForce(transform.forward * m_fTotalSpeed, ForceMode.VelocityChange);
-        ////
-        //if(m_Rigidbody.velocity.magnitude > m_fTotalSpeed)
-        //{
-        //    m_Rigidbody.velocity = m_Rigidbody.velocity.normalized * m_fTotalSpeed;
-        //}
+        m_Rigidbody.AddForce(m_vMoveVec * m_fTotalSpeed);
+        //
+        if (m_Rigidbody.velocity.magnitude > m_fTotalSpeed)
+        {
+            m_Rigidbody.velocity = m_Rigidbody.velocity.normalized * m_fTotalSpeed;
+        }
+        
     }
 
     private void Run()
