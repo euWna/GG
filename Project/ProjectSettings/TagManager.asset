@@ -16,6 +16,8 @@ TagManager:
   - Goal
   - Wall
   - Bunker
+  - AI
+  - stair
   layers:
   - Default
   - TransparentFX
