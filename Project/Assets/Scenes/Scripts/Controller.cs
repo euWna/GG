@@ -10,23 +10,16 @@ public class Controller : Agent
     public Rigidbody rb;
     public GameObject Goal;
     public RayPerceptionSensorComponent3D m_rayPerceptionSensorComponent3D;
-    public GameObject head;
-    public GameObject plane;
+    public GameObject startPoint;
 
-    public float earthquakeThreshold = 0.5f; //지진이 일어났을 때 판단 기준 : agent의 y값이 0.5이상 변동
-    public float searchTime = 2f; //bunker 탐색 제한시간 2초
-
-    private bool earthquakeOccurred;
-    private float searchTimer;
     public GameObject nearestBunker;
-
-    public GameObject bunker;
 
     private Animator m_Animator;
 
     public bool bunkerFind;
     public bool isHide;
     public bool HideDone;
+    public int hp = 10;
 
     private void Start()
     {
@@ -68,6 +61,7 @@ public class Controller : Agent
                     {
                         Debug.Log("boom!!!");
                         //리워드 -1
+                        hp -= 10;
                         AddReward(-1.0f);
                         //에피소드 종료
                         Invoke("EndEpisode", 1f);
@@ -85,19 +79,8 @@ public class Controller : Agent
         {
             SearchForBunker();
             //벙커를 찾은 경우
-            if(nearestBunker != null)
-            {
-                MoveToBunker();
-            }
         }
     }
-
-    public float distancePlaneToPoint(Vector3 normal, Vector3 planeDot, Vector3 point)
-    {
-        Plane plane = new Plane(normal, planeDot);
-        return plane.GetDistanceToPoint(point);
-    }
-
     public void Update()
     {
         RayCastInfo(m_rayPerceptionSensorComponent3D);
@@ -106,9 +89,9 @@ public class Controller : Agent
 
     public override void OnEpisodeBegin()
     {
-        this.transform.localPosition = new Vector3(Random.Range(-19, 7), 0, Random.Range(-19, 7));
+        this.transform.localPosition = startPoint.transform.localPosition;
         this.transform.localEulerAngles = new Vector3(0, 0, 0);
-        bunker.gameObject.transform.localPosition = new Vector3(Random.Range(-16, 2), 0, Random.Range(-16, 2));
+        //bunker.gameObject.transform.localPosition = new Vector3(Random.Range(-16, 2), 0, Random.Range(-16, 2));
         GroundShaker.magnitude = Random.Range(1, 9);
         isHide = false;
         rb.velocity = Vector3.zero;
@@ -137,9 +120,10 @@ public class Controller : Agent
         {
             //숨어있는 상태에서 벙커에 충돌한 경우
             //(단순히 이동중 벙커에 부딫힌 경우와 구분하기 위한 조건임)
-            if(bunkerFind == true)
+            if(bunkerFind == true && HideDone == false)
             {
                 Debug.Log("Hide");
+                isHide = true;
                 //벙커에 충돌(숨으면) 리워드 +1
                 AddReward(1.0f);
                 //에피소드 종료
@@ -158,6 +142,7 @@ public class Controller : Agent
     public void Stand()
     {
         m_Animator.SetTrigger("Standing");
+        isHide = false;
     }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -189,7 +174,12 @@ public class Controller : Agent
 
        
         rb.AddForce(dir * 0.4f, ForceMode.VelocityChange);
-        
+
+        if(Mathf.Abs(rb.velocity.x) > 40 || Mathf.Abs(rb.velocity.z) > 40)
+        {
+            rb.velocity = new Vector3(Mathf.Sign(rb.velocity.x) * 40, rb.velocity.y, Mathf.Sign(rb.velocity.z) * 40);
+        }
+
         //this.transform.position += transform.forward * Time.deltaTime * 5f;
         m_Animator.SetBool("IsRun", rb.velocity != Vector3.zero);
 
@@ -202,27 +192,10 @@ public class Controller : Agent
         AddReward(-1f / MaxStep);
     }
 
-    private void MoveToBunker()
-    {
-        //이동할 벙커와 Agent의 거리 계산
-        //Vector3 moveDirection = nearestBunker.transform.position - transform.position;
-        float dist = Vector3.Distance(this.gameObject.transform.localPosition, nearestBunker.gameObject.transform.localPosition);
-        //벙커가 있는 방향으로 이동
-        //transform.Translate(moveDirection.normalized * Time.deltaTime * 3);
-        if (dist < 2f)
-        {
-            //거리가 일정 범위 안으로 들어왔을 때(도달했다고 볼 만큼 가까울 때)
-            //isHide를 true로해 숨어있는 상태 나타냄
-            //Debug.Log("dist : " + dist);
-            isHide = true;
-        }
-        
-    }
-
     private void SearchForBunker()
     {
         //플레이어 주변 벙커(콜라이더) 탐색
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 7.5f); 
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 13.5f); 
 
         foreach (Collider collider in colliders)
         {
