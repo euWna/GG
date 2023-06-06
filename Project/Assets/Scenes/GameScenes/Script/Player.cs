@@ -72,7 +72,7 @@ public class Player : MonoBehaviour
         m_fTotalSpeed = m_fSpeed;
         Get_KeyInput();
         Run();
-        transform.position += m_vMoveVec * m_fSpeed * Time.deltaTime;
+        transform.position += m_vMoveVec * m_fTotalSpeed * Time.deltaTime;
         transform.LookAt(transform.position + m_vMoveVec);
         //m_Rigidbody.AddForce(transform.forward * m_fTotalSpeed, ForceMode.VelocityChange);
         ////
