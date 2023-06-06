@@ -5,31 +5,23 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float m_fSpeed = 3.0f;
+    public float m_fSpeed = 3f;
     public Transform m_CameraTransform;
 
-    private Rigidbody m_Rigidbody;
     private Vector3 m_vMoveVec;
     private Animator m_Animator;
 
     private bool m_bIsRun = false;
-    private bool m_bIsSprint = false;
-
-    private float m_fTotalSpeed;
-
-    private CharacterStatus m_Status;
 
     void Start()
     {
         m_Animator = GetComponentInChildren<Animator>();
-        m_Status = GetComponentInChildren<CharacterStatus>();
-        m_Rigidbody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Move();
+        Move();   
     }
 
     private void Get_KeyInput()
@@ -69,42 +61,8 @@ public class Player : MonoBehaviour
     }
     private void Move()
     {
-        m_fTotalSpeed = m_fSpeed;
         Get_KeyInput();
-        Run();
         transform.position += m_vMoveVec * m_fSpeed * Time.deltaTime;
         transform.LookAt(transform.position + m_vMoveVec);
-        //m_Rigidbody.AddForce(transform.forward * m_fTotalSpeed, ForceMode.VelocityChange);
-        ////
-        //if(m_Rigidbody.velocity.magnitude > m_fTotalSpeed)
-        //{
-        //    m_Rigidbody.velocity = m_Rigidbody.velocity.normalized * m_fTotalSpeed;
-        //}
-    }
-
-    private void Run()
-    {
-        m_bIsSprint = false;
-        if (m_bIsRun && m_Status.Is_Usable())
-        {
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                m_bIsSprint = true;
-                m_fTotalSpeed *= 1.5f;
-                m_Status.Use_Stamina(25f);
-
-            }
-        }
-        m_Animator.SetBool("IsSprint", m_bIsSprint);
-
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        //if (collision.gameObject.CompareTag("Falling"))
-        //{
-        //    float fDamage = collision.gameObject.GetComponent<FallingObject>().Get_Damage();
-        //    m_Status.Set_Damage(fDamage);
-        //}
     }
 }
