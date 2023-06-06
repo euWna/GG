@@ -16,9 +16,9 @@ public class FallTrigger : MonoBehaviour
     {
         
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collider)
     {
-        if(collision.gameObject.CompareTag("AI") && collision.gameObject.CompareTag("Player"))
+        if(collider.gameObject.CompareTag("AI") || collider.gameObject.CompareTag("Player"))
         {
             Debug.Log("Falling Trigger!");
             foreach(GameObject obj in FallObject)
