@@ -6,7 +6,7 @@ public class Playercamera : MonoBehaviour
 {
     public Transform m_PlayerTransform;
     public Vector3 m_vOffset;
-    public float m_fRotateSpeed = 100f; 
+    public float m_fRotateSpeed = 250f; 
 
     private float m_fXRotate, m_fYRotate;
     private float m_XTotalRot, m_YTotalrot;
