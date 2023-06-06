@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     public float m_fSpeed = 8.0f;
     public Transform m_CameraTransform;
+    public float m_fSPUsage = 25f;
 
     private Rigidbody m_Rigidbody;
     private Vector3 m_vMoveVec;
@@ -96,7 +97,7 @@ public class Player : MonoBehaviour
             {
                 m_bIsSprint = true;
                 m_fTotalSpeed *= 1.5f;
-                m_Status.Use_Stamina(25f);
+                m_Status.Use_Stamina(m_fSPUsage);
 
             }
         }
