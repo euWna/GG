@@ -18,20 +18,22 @@ public class Controller : Agent
 
     private bool earthquakeOccurred;
     private float searchTimer;
-    private GameObject nearestBunker;
+    public GameObject nearestBunker;
 
     public GameObject bunker;
 
     private Animator m_Animator;
 
+    public bool bunkerFind;
     public bool isHide;
+    public bool HideDone;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         m_Animator = GetComponent<Animator>();
         m_rayPerceptionSensorComponent3D = GetComponentInChildren<RayPerceptionSensorComponent3D>();
-        isHide = false;
+        HideDone = false;
     }
 
 
@@ -79,7 +81,7 @@ public class Controller : Agent
     public void HideNew()
     {
         //진도가 4 이상일 경우에만 숨기
-        if(GroundShaker.magnitude >= 4)
+        if(GroundShaker.magnitude >= 4 && HideDone == false)
         {
             SearchForBunker();
             //벙커를 찾은 경우
@@ -110,7 +112,7 @@ public class Controller : Agent
         GroundShaker.magnitude = Random.Range(1, 9);
         isHide = false;
         rb.velocity = Vector3.zero;
-
+        nearestBunker = null;
         m_Animator.Play("Idle");
 
     }
@@ -135,16 +137,27 @@ public class Controller : Agent
         {
             //숨어있는 상태에서 벙커에 충돌한 경우
             //(단순히 이동중 벙커에 부딫힌 경우와 구분하기 위한 조건임)
-            if(isHide == true)
+            if(bunkerFind == true)
             {
                 Debug.Log("Hide");
                 //벙커에 충돌(숨으면) 리워드 +1
                 AddReward(1.0f);
                 //에피소드 종료
-                Invoke("EndEpisode",1f);
                 m_Animator.SetTrigger("Rolling");
+                Invoke("Stand", 3f);
+                HideDone = true;
+                nearestBunker = null;
+                //nearestBunker = null;
+                //Invoke("EndEpisode",1f);
+                //nearestBunker = null;
+                //m_Animator.SetTrigger("Rolling");
             }
         }
+    }
+
+    public void Stand()
+    {
+        m_Animator.SetTrigger("Standing");
     }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -173,9 +186,17 @@ public class Controller : Agent
                 break;
         }
         transform.Rotate(rot, Time.deltaTime * 300f);
-        rb.AddForce(dir * 1f, ForceMode.VelocityChange);
 
+       
+        rb.AddForce(dir * 0.4f, ForceMode.VelocityChange);
+        
+        //this.transform.position += transform.forward * Time.deltaTime * 5f;
         m_Animator.SetBool("IsRun", rb.velocity != Vector3.zero);
+
+        if(nearestBunker != null)
+        {
+            this.transform.LookAt(nearestBunker.transform);
+        }
 
         // 걸음 수가 많을수록(탈출, 은신이 지연될수록) 리워드 감소
         AddReward(-1f / MaxStep);
@@ -184,14 +205,15 @@ public class Controller : Agent
     private void MoveToBunker()
     {
         //이동할 벙커와 Agent의 거리 계산
-        Vector3 moveDirection = nearestBunker.transform.position - transform.position;
+        //Vector3 moveDirection = nearestBunker.transform.position - transform.position;
         float dist = Vector3.Distance(this.gameObject.transform.localPosition, nearestBunker.gameObject.transform.localPosition);
         //벙커가 있는 방향으로 이동
-        transform.Translate(moveDirection.normalized * Time.deltaTime * 3);
+        //transform.Translate(moveDirection.normalized * Time.deltaTime * 3);
         if (dist < 2f)
         {
             //거리가 일정 범위 안으로 들어왔을 때(도달했다고 볼 만큼 가까울 때)
             //isHide를 true로해 숨어있는 상태 나타냄
+            //Debug.Log("dist : " + dist);
             isHide = true;
         }
         
@@ -200,7 +222,7 @@ public class Controller : Agent
     private void SearchForBunker()
     {
         //플레이어 주변 벙커(콜라이더) 탐색
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 5.5f); 
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 7.5f); 
 
         foreach (Collider collider in colliders)
         {
@@ -208,8 +230,13 @@ public class Controller : Agent
             if(collider.CompareTag("Bunker"))
             {
                 //벙커 발견 완료
-                nearestBunker = collider.gameObject;
-                Debug.Log("BunkerFInd");
+                if(HideDone == false)
+                {
+                    nearestBunker = collider.gameObject;
+                    Debug.Log("BunkerFInd");
+                    bunkerFind = true;
+                }
+                //this.transform.LookAt(nearestBunker.transform);
             }
 
         }
