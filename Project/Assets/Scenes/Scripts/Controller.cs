@@ -22,11 +22,14 @@ public class Controller : Agent
 
     public GameObject bunker;
 
+    private Animator m_Animator;
+
     public bool isHide;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        m_Animator = GetComponent<Animator>();
         m_rayPerceptionSensorComponent3D = GetComponentInChildren<RayPerceptionSensorComponent3D>();
         isHide = false;
     }
@@ -65,7 +68,8 @@ public class Controller : Agent
                         //리워드 -1
                         AddReward(-1.0f);
                         //에피소드 종료
-                        EndEpisode();
+                        Invoke("EndEpisode", 1f);
+                        m_Animator.SetTrigger("Death");
                     }
                 }
             }
@@ -107,6 +111,8 @@ public class Controller : Agent
         isHide = false;
         rb.velocity = Vector3.zero;
 
+        m_Animator.Play("Idle");
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -135,7 +141,8 @@ public class Controller : Agent
                 //벙커에 충돌(숨으면) 리워드 +1
                 AddReward(1.0f);
                 //에피소드 종료
-                EndEpisode();
+                Invoke("EndEpisode",1f);
+                m_Animator.SetTrigger("Rolling");
             }
         }
     }
@@ -149,7 +156,6 @@ public class Controller : Agent
     {
         var dir = Vector3.zero;
         var rot = Vector3.zero;
-
         var action = actions.DiscreteActions[0];
         switch(action)
         {
@@ -167,7 +173,9 @@ public class Controller : Agent
                 break;
         }
         transform.Rotate(rot, Time.deltaTime * 300f);
-        rb.AddForce(dir * 0.5f, ForceMode.VelocityChange);
+        rb.AddForce(dir * 1f, ForceMode.VelocityChange);
+
+        m_Animator.SetBool("IsRun", rb.velocity != Vector3.zero);
 
         // 걸음 수가 많을수록(탈출, 은신이 지연될수록) 리워드 감소
         AddReward(-1f / MaxStep);
