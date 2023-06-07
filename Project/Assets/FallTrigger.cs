@@ -18,12 +18,18 @@ public class FallTrigger : MonoBehaviour
     }
     private void OnTriggerEnter(Collider collider)
     {
-        if(collider.gameObject.CompareTag("AI") || collider.gameObject.CompareTag("Player"))
+        //진도 4 이상일 때만 물체 추락
+        if( //(GroundShaker.magnitude >= 4) &&
+            (collider.gameObject.CompareTag("AI") || collider.gameObject.CompareTag("Player")))
         {
             Debug.Log("Falling Trigger!");
             foreach(GameObject obj in FallObject)
             {
-                obj.GetComponent<ConfigurableJoint>().yMotion = ConfigurableJointMotion.Free;
+                //Destroy(obj.GetComponent<ConfigurableJoint>());
+                obj.GetComponent<ConfigurableJoint>().zMotion
+                = obj.GetComponent<ConfigurableJoint>().yMotion
+                //= obj.GetComponent<ConfigurableJoint>().xMotion
+                = ConfigurableJointMotion.Free;
             }
         }
     }

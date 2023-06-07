@@ -14,16 +14,17 @@ public class GroundShaker : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("start position");
+        //Debug.Log("start position");
         originalPosition = Target.transform.localPosition;
-        Debug.Log(originalPosition);
+        //Debug.Log(originalPosition);
 
         magnitude = Random.Range(1, 8);
+        Debug.Log(magnitude);
     }
 
     void FixedUpdate()
     {
-        Debug.Log(magnitude);
+        //Debug.Log(magnitude);
 
         Vector2 randomPos = Random.insideUnitCircle * magnitude;
 
@@ -39,6 +40,6 @@ public class GroundShaker : MonoBehaviour
         transform.localPosition = originalPosition + moveVec;
         transform.localRotation = Quaternion.Euler(moveVec);
 
-        Debug.Log(transform.localPosition);
+        //Debug.Log(transform.localPosition);
     }
 }
