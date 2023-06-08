@@ -82,18 +82,27 @@ public class Player : MonoBehaviour
     }
     private void Move()
     {
-        m_fTotalSpeed = m_fSpeed;
+        m_fTotalSpeed = 0f;
         Get_KeyInput();
         Run();
         //transform.position += m_vMoveVec * m_fTotalSpeed * Time.deltaTime;
         transform.LookAt(transform.position + m_vMoveVec);
-        m_Rigidbody.AddForce(m_vMoveVec * m_fTotalSpeed, ForceMode.VelocityChange);
+        m_Rigidbody.AddForce(m_vMoveVec * m_fTotalSpeed);
+        m_Rigidbody.AddForce(Physics.gravity);
         m_Rigidbody.angularVelocity = new Vector3(0f, 0f, 0f);
-        //
-        //if (m_Rigidbody.velocity.magnitude > m_fTotalSpeed)
-        //{
-        //    m_Rigidbody.velocity = m_Rigidbody.velocity.normalized * m_fTotalSpeed;
-        //}
+
+        if (Mathf.Abs(m_Rigidbody.velocity.x) > m_fTotalSpeed)
+        {
+            m_Rigidbody.velocity = new Vector3(Mathf.Sign(m_Rigidbody.velocity.x) * m_fTotalSpeed, m_Rigidbody.velocity.y, m_Rigidbody.velocity.z);
+        }
+        else if (Mathf.Abs(m_Rigidbody.velocity.z) > m_fTotalSpeed)
+        {
+            m_Rigidbody.velocity = new Vector3(m_Rigidbody.velocity.x, m_Rigidbody.velocity.y, Mathf.Sign(m_Rigidbody.velocity.z) * m_fTotalSpeed);
+        }
+        else if (m_Rigidbody.velocity.y > m_fTotalSpeed)
+        {
+            m_Rigidbody.velocity = new Vector3(m_Rigidbody.velocity.x, Mathf.Sign(m_Rigidbody.velocity.y) * m_fTotalSpeed, m_Rigidbody.velocity.z);
+        }
     }
 
     private void Run()
@@ -117,9 +126,9 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("stair"))
         {
-            m_Rigidbody.AddForce(new Vector3(0, 0, -34) * 1f * 0.4f, ForceMode.VelocityChange);
+            m_Rigidbody.AddForce(transform.forward * m_fTotalSpeed*0.4f, ForceMode.VelocityChange);
         }
-        else if (collision.gameObject.CompareTag("Falling"))//낙하물 충돌
+        else if (collision.gameObject.CompareTag("Obstacle"))//낙하물 충돌
         {
             float fDamage = collision.gameObject.GetComponent<FallingObject>().Get_Damage();
             m_Status.Set_Damage(fDamage);
