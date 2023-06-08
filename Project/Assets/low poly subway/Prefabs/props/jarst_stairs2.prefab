@@ -109,7 +109,6 @@ GameObject:
   - component: {fileID: 4683210079969877659}
   - component: {fileID: 1423862790655435362}
   - component: {fileID: 8517427682386295364}
-  - component: {fileID: 6566642158158325662}
   m_Layer: 0
   m_Name: jarst_stairs2
   m_TagString: Untagged
@@ -185,20 +184,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &8517427682386295364
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 864204760729507518}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -8840747611894781100, guid: 5cd6c1b0583a8c54a8c8943222852eaf, type: 3}
---- !u!64 &6566642158158325662
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
