@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float m_fSpeed = 3.0f;
+    public float m_fSpeed;
     public Transform m_CameraTransform;
 
     private Rigidbody m_Rigidbody;
@@ -36,30 +36,34 @@ public class Player : MonoBehaviour
     {
         m_vMoveVec = Vector3.zero;
         m_bIsRun = false;
-        if(Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W))
         {
             m_vMoveVec += m_CameraTransform.forward;
+            m_fTotalSpeed = m_fSpeed;
             m_bIsRun = true;
         }
-        else if(Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(KeyCode.S))
         {
             m_vMoveVec -= m_CameraTransform.forward;
+            m_fTotalSpeed = m_fSpeed;
             m_bIsRun = true;
 
         }
         if (Input.GetKey(KeyCode.D))
         {
             m_vMoveVec += m_CameraTransform.right;
+            m_fTotalSpeed = m_fSpeed;
             m_bIsRun = true;
 
         }
-        else if(Input.GetKey(KeyCode.A))
+        else if (Input.GetKey(KeyCode.A))
         {
             m_vMoveVec -= m_CameraTransform.right;
+            m_fTotalSpeed = m_fSpeed;
             m_bIsRun = true;
 
         }
-        
+
         m_vMoveVec = m_vMoveVec.normalized;
         Vector3 vPlayerRight = Vector3.Cross(Vector3.up, m_vMoveVec);
         m_vMoveVec = Vector3.Cross(vPlayerRight, Vector3.up).normalized;
@@ -72,11 +76,12 @@ public class Player : MonoBehaviour
         m_fTotalSpeed = m_fSpeed;
         Get_KeyInput();
         Run();
-        transform.position += m_vMoveVec * m_fTotalSpeed * Time.deltaTime;
+        //transform.position += m_vMoveVec * m_fTotalSpeed * Time.deltaTime;
         transform.LookAt(transform.position + m_vMoveVec);
-        //m_Rigidbody.AddForce(transform.forward * m_fTotalSpeed, ForceMode.VelocityChange);
-        ////
-        //if(m_Rigidbody.velocity.magnitude > m_fTotalSpeed)
+        m_Rigidbody.AddForce(m_vMoveVec * m_fTotalSpeed, ForceMode.VelocityChange);
+        m_Rigidbody.angularVelocity = new Vector3(0f, 0f, 0f);
+        //
+        //if (m_Rigidbody.velocity.magnitude > m_fTotalSpeed)
         //{
         //    m_Rigidbody.velocity = m_Rigidbody.velocity.normalized * m_fTotalSpeed;
         //}
@@ -101,10 +106,15 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        //if (collision.gameObject.CompareTag("Falling"))
-        //{
-        //    float fDamage = collision.gameObject.GetComponent<FallingObject>().Get_Damage();
-        //    m_Status.Set_Damage(fDamage);
-        //}
+        if (collision.gameObject.CompareTag("stair"))
+        {
+            m_Rigidbody.AddForce(new Vector3(0, 0, -34) * 1f * 0.4f, ForceMode.VelocityChange);
+        }
+        else if (collision.gameObject.CompareTag("Falling"))//낙하물 충돌
+        {
+            float fDamage = collision.gameObject.GetComponent<FallingObject>().Get_Damage();
+            m_Status.Set_Damage(fDamage);
+        }
+
     }
 }
