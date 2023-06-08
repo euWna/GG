@@ -18,6 +18,7 @@ TagManager:
   - Bunker
   - AI
   - stair
+  - Falling
   layers:
   - Default
   - TransparentFX
