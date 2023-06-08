@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CharacterStatus : MonoBehaviour
 {
+    public Player m_Target;
+    public EventUI m_EventUI;
     public float m_fSPRecover;
 
     public float m_fMaxHP;
@@ -48,6 +50,8 @@ public class CharacterStatus : MonoBehaviour
         if(0f > m_fHP)
         {
             m_fHP = 0;
+            m_Target.Set_Dead();
+            m_EventUI.Activate_and_Over();
         }
     }
     public bool Is_Usable()

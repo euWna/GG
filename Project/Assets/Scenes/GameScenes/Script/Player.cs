@@ -64,12 +64,21 @@ public class Player : MonoBehaviour
 
         }
 
+        if(Input.GetKey(KeyCode.O))
+        {
+            m_Status.Set_Damage(100f);
+        }
+
         m_vMoveVec = m_vMoveVec.normalized;
         Vector3 vPlayerRight = Vector3.Cross(Vector3.up, m_vMoveVec);
         m_vMoveVec = Vector3.Cross(vPlayerRight, Vector3.up).normalized;
 
         m_Animator.SetBool("IsRun", m_bIsRun);
 
+    }
+    public void Set_Dead()
+    {
+        m_Animator.SetTrigger("Death");
     }
     private void Move()
     {
