@@ -12,9 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/GameScenes/Lobby.unity
     guid: 68a98b9e9020e0a43945fa2bd87fe38d
   - enabled: 1
-    path: Assets/Scenes/GameScenes/Subway.unity
-    guid: 472bad480d61e104a8e9e15b24ee5101
-  - enabled: 1
     path: Assets/Scenes/GameScenes/Apartment.unity
     guid: aa5bad571b34ffa44b84968a72cc5dab
+  - enabled: 1
+    path: Assets/low poly subway/DemoScene/Subway.unity
+    guid: dbc7fa3698e52774e8be070425b6afa4
   m_configObjects: {}
