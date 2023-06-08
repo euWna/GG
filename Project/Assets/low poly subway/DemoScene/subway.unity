@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45044863, g: 0.5004491, b: 0.5751925, a: 1}
+  m_IndirectSpecularColor: {r: 0.45044917, g: 0.5004496, b: 0.575194, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9126,6 +9126,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: jarst_bench (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1383540306554193152, guid: f8d6366311b668d4787e8249ce2d457e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1383540306554193152, guid: f8d6366311b668d4787e8249ce2d457e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Bunker
+      objectReference: {fileID: 0}
     - target: {fileID: 2695416802171680531, guid: f8d6366311b668d4787e8249ce2d457e,
         type: 3}
       propertyPath: m_RootOrder
@@ -13616,6 +13626,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: jarst_bench1 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1404701926589417986, guid: 8c4398cbd857cbf49be17092ae43b200,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1404701926589417986, guid: 8c4398cbd857cbf49be17092ae43b200,
+        type: 3}
+      propertyPath: m_TagString
+      value: Bunker
+      objectReference: {fileID: 0}
     - target: {fileID: 2676784342352377873, guid: 8c4398cbd857cbf49be17092ae43b200,
         type: 3}
       propertyPath: m_RootOrder
@@ -16449,6 +16469,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: jarst_bench1 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1404701926589417986, guid: 8c4398cbd857cbf49be17092ae43b200,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1404701926589417986, guid: 8c4398cbd857cbf49be17092ae43b200,
+        type: 3}
+      propertyPath: m_TagString
+      value: Bunker
       objectReference: {fileID: 0}
     - target: {fileID: 2676784342352377873, guid: 8c4398cbd857cbf49be17092ae43b200,
         type: 3}
@@ -21843,9 +21873,9 @@ GameObject:
   m_Component:
   - component: {fileID: 537789679}
   - component: {fileID: 537789680}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AI_leftWall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21873,7 +21903,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 537789678}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2, y: 40, z: 480}
@@ -30529,6 +30559,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: jarst_bench (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1383540306554193152, guid: f8d6366311b668d4787e8249ce2d457e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1383540306554193152, guid: f8d6366311b668d4787e8249ce2d457e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Bunker
+      objectReference: {fileID: 0}
     - target: {fileID: 2695416802171680531, guid: f8d6366311b668d4787e8249ce2d457e,
         type: 3}
       propertyPath: m_RootOrder
@@ -36265,14 +36305,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 836729932}
-  m_LocalRotation: {x: 0, y: 0, z: -0.29237175, w: 0.9563048}
+  m_LocalRotation: {x: 0, y: 0, z: -0.30070576, w: 0.953717}
   m_LocalPosition: {x: -2.25, y: 1.46, z: -5.7}
   m_LocalScale: {x: 0.5468907, y: 1, z: 0.55018944}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1511532697}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -34}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -35}
 --- !u!64 &836729934
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -53495,6 +53535,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: jarst_bench (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1383540306554193152, guid: f8d6366311b668d4787e8249ce2d457e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1383540306554193152, guid: f8d6366311b668d4787e8249ce2d457e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Bunker
+      objectReference: {fileID: 0}
     - target: {fileID: 2695416802171680531, guid: f8d6366311b668d4787e8249ce2d457e,
         type: 3}
       propertyPath: m_RootOrder
@@ -54057,6 +54107,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: jarst_bench1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1404701926589417986, guid: 8c4398cbd857cbf49be17092ae43b200,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1404701926589417986, guid: 8c4398cbd857cbf49be17092ae43b200,
+        type: 3}
+      propertyPath: m_TagString
+      value: Bunker
       objectReference: {fileID: 0}
     - target: {fileID: 2676784342352377873, guid: 8c4398cbd857cbf49be17092ae43b200,
         type: 3}
@@ -62866,8 +62926,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1404701926589417986, guid: 8c4398cbd857cbf49be17092ae43b200,
         type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1404701926589417986, guid: 8c4398cbd857cbf49be17092ae43b200,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1404701926589417986, guid: 8c4398cbd857cbf49be17092ae43b200,
+        type: 3}
+      propertyPath: m_TagString
+      value: Bunker
       objectReference: {fileID: 0}
     - target: {fileID: 2676784342352377873, guid: 8c4398cbd857cbf49be17092ae43b200,
         type: 3}
@@ -69198,9 +69268,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1680017589}
   - component: {fileID: 1680017590}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AI_rightWall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -72523,6 +72593,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: jarst_bench (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1383540306554193152, guid: f8d6366311b668d4787e8249ce2d457e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1383540306554193152, guid: f8d6366311b668d4787e8249ce2d457e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Bunker
+      objectReference: {fileID: 0}
     - target: {fileID: 2695416802171680531, guid: f8d6366311b668d4787e8249ce2d457e,
         type: 3}
       propertyPath: m_RootOrder
@@ -75449,7 +75529,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1830596288}
   - component: {fileID: 1830596289}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: leg_collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83212,6 +83292,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: jarst_bench1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1404701926589417986, guid: 8c4398cbd857cbf49be17092ae43b200,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1404701926589417986, guid: 8c4398cbd857cbf49be17092ae43b200,
+        type: 3}
+      propertyPath: m_TagString
+      value: Bunker
       objectReference: {fileID: 0}
     - target: {fileID: 2676784342352377873, guid: 8c4398cbd857cbf49be17092ae43b200,
         type: 3}
