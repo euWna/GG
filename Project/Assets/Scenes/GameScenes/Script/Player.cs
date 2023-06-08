@@ -105,11 +105,11 @@ public class Player : MonoBehaviour
         {
             m_Rigidbody.AddForce(new Vector3(0, 0, -34) * 1f * 0.4f, ForceMode.VelocityChange);
         }
-        //else if (collision.gameObject.CompareTag("Falling"))//낙하물 충돌
-        //{
-        //    float fDamage = collision.gameObject.GetComponent<FallingObject>().Get_Damage();
-        //    m_Status.Set_Damage(fDamage);
-        //}
+        else if (collision.gameObject.CompareTag("Falling"))//낙하물 충돌
+        {
+            float fDamage = collision.gameObject.GetComponent<FallingObject>().Get_Damage();
+            m_Status.Set_Damage(fDamage);
+        }
 
     }
 }

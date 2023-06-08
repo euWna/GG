@@ -6840,7 +6840,7 @@ GameObject:
   - component: {fileID: 165075939}
   m_Layer: 0
   m_Name: B2_left_ceiling_lights
-  m_TagString: Untagged
+  m_TagString: Falling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9812,6 +9812,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1009490495701330854, guid: 13ebf678c3b8c0a42bb1ef594f7d7d00,
+        type: 3}
+      propertyPath: m_TagString
+      value: Falling
+      objectReference: {fileID: 0}
     - target: {fileID: 4060337669589162421, guid: 13ebf678c3b8c0a42bb1ef594f7d7d00,
         type: 3}
       propertyPath: m_RootOrder
@@ -9896,6 +9901,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 937208920996680071, guid: 98fa762a21a446343b74e939b38e324e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Falling
       objectReference: {fileID: 0}
     - target: {fileID: 4277007137554785172, guid: 98fa762a21a446343b74e939b38e324e,
         type: 3}
@@ -12442,6 +12452,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: jarst_lamp2 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1009490495701330854, guid: 13ebf678c3b8c0a42bb1ef594f7d7d00,
+        type: 3}
+      propertyPath: m_TagString
+      value: Falling
       objectReference: {fileID: 0}
     - target: {fileID: 4060337669589162421, guid: 13ebf678c3b8c0a42bb1ef594f7d7d00,
         type: 3}
@@ -24149,6 +24164,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 937208920996680071, guid: 98fa762a21a446343b74e939b38e324e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Falling
+      objectReference: {fileID: 0}
     - target: {fileID: 4277007137554785172, guid: 98fa762a21a446343b74e939b38e324e,
         type: 3}
       propertyPath: m_RootOrder
@@ -33123,6 +33143,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 937208920996680071, guid: 98fa762a21a446343b74e939b38e324e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Falling
+      objectReference: {fileID: 0}
     - target: {fileID: 4277007137554785172, guid: 98fa762a21a446343b74e939b38e324e,
         type: 3}
       propertyPath: m_RootOrder
@@ -33872,7 +33897,7 @@ GameObject:
   - component: {fileID: 819405819}
   m_Layer: 0
   m_Name: B2_right_ceiling_lights
-  m_TagString: Untagged
+  m_TagString: Falling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35367,6 +35392,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: jarst_lamp
+      objectReference: {fileID: 0}
+    - target: {fileID: 937208920996680071, guid: 98fa762a21a446343b74e939b38e324e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Falling
       objectReference: {fileID: 0}
     - target: {fileID: 4277007137554785172, guid: 98fa762a21a446343b74e939b38e324e,
         type: 3}
@@ -43016,6 +43046,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 937208920996680071, guid: 98fa762a21a446343b74e939b38e324e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Falling
+      objectReference: {fileID: 0}
     - target: {fileID: 4277007137554785172, guid: 98fa762a21a446343b74e939b38e324e,
         type: 3}
       propertyPath: m_RootOrder
@@ -44033,6 +44068,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1009490495701330854, guid: 13ebf678c3b8c0a42bb1ef594f7d7d00,
+        type: 3}
+      propertyPath: m_TagString
+      value: Falling
       objectReference: {fileID: 0}
     - target: {fileID: 4060337669589162421, guid: 13ebf678c3b8c0a42bb1ef594f7d7d00,
         type: 3}
@@ -45702,6 +45742,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 937208920996680071, guid: 98fa762a21a446343b74e939b38e324e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Falling
+      objectReference: {fileID: 0}
     - target: {fileID: 4277007137554785172, guid: 98fa762a21a446343b74e939b38e324e,
         type: 3}
       propertyPath: m_RootOrder
@@ -46529,6 +46574,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1009490495701330854, guid: 13ebf678c3b8c0a42bb1ef594f7d7d00,
+        type: 3}
+      propertyPath: m_TagString
+      value: Falling
       objectReference: {fileID: 0}
     - target: {fileID: 4060337669589162421, guid: 13ebf678c3b8c0a42bb1ef594f7d7d00,
         type: 3}
@@ -49943,6 +49993,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1009490495701330854, guid: 13ebf678c3b8c0a42bb1ef594f7d7d00,
+        type: 3}
+      propertyPath: m_TagString
+      value: Falling
+      objectReference: {fileID: 0}
     - target: {fileID: 4060337669589162421, guid: 13ebf678c3b8c0a42bb1ef594f7d7d00,
         type: 3}
       propertyPath: m_RootOrder
@@ -52066,6 +52121,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: jarst_lamp2 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1009490495701330854, guid: 13ebf678c3b8c0a42bb1ef594f7d7d00,
+        type: 3}
+      propertyPath: m_TagString
+      value: Falling
       objectReference: {fileID: 0}
     - target: {fileID: 4060337669589162421, guid: 13ebf678c3b8c0a42bb1ef594f7d7d00,
         type: 3}
@@ -63875,6 +63935,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: jarst_lamp2 (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 1009490495701330854, guid: 13ebf678c3b8c0a42bb1ef594f7d7d00,
+        type: 3}
+      propertyPath: m_TagString
+      value: Falling
+      objectReference: {fileID: 0}
     - target: {fileID: 4060337669589162421, guid: 13ebf678c3b8c0a42bb1ef594f7d7d00,
         type: 3}
       propertyPath: m_RootOrder
@@ -66702,6 +66767,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 937208920996680071, guid: 98fa762a21a446343b74e939b38e324e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Falling
       objectReference: {fileID: 0}
     - target: {fileID: 4277007137554785172, guid: 98fa762a21a446343b74e939b38e324e,
         type: 3}
@@ -69866,6 +69936,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1009490495701330854, guid: 13ebf678c3b8c0a42bb1ef594f7d7d00,
+        type: 3}
+      propertyPath: m_TagString
+      value: Falling
       objectReference: {fileID: 0}
     - target: {fileID: 1009490495701330854, guid: 13ebf678c3b8c0a42bb1ef594f7d7d00,
         type: 3}
