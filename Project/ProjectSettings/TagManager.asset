@@ -4,9 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - ball
-  - blueGoal
-  - blueAgent
   - goal
   - ground
   - stone
