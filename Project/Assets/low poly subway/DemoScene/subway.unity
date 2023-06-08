@@ -5178,9 +5178,10 @@ GameObject:
   - component: {fileID: 124348361}
   - component: {fileID: 124348360}
   - component: {fileID: 124348359}
+  - component: {fileID: 124348362}
   m_Layer: 0
-  m_Name: stair_Plane (1)
-  m_TagString: stair
+  m_Name: stair_collider
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5192,14 +5193,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 124348357}
-  m_LocalRotation: {x: -0, y: -0, z: -0.30127352, w: 0.95353776}
-  m_LocalPosition: {x: -1.226, y: 2.009002, z: -5.60078}
-  m_LocalScale: {x: 0.5468907, y: 1, z: 0.06391765}
+  m_LocalRotation: {x: -0, y: -0, z: -0.36074278, w: 0.9326654}
+  m_LocalPosition: {x: -1.6388929, y: 2.204144, z: -5.600005}
+  m_LocalScale: {x: 0.6347048, y: 1, z: 0.06391765}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1511532697}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -35.068}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -42.292}
 --- !u!64 &124348359
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5209,7 +5210,7 @@ MeshCollider:
   m_GameObject: {fileID: 124348357}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -5264,6 +5265,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 124348357}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &124348362
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124348357}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.000002, y: 0.04969722, z: 10.000002}
+  m_Center: {x: 0.0057582697, y: 0.025357718, z: -0.000015330039}
 --- !u!1 &124929502
 GameObject:
   m_ObjectHideFlags: 0
@@ -9263,6 +9277,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: jarst_bench (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1383540306554193152, guid: f8d6366311b668d4787e8249ce2d457e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1383540306554193152, guid: f8d6366311b668d4787e8249ce2d457e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Bunker
       objectReference: {fileID: 0}
     - target: {fileID: 2695416802171680531, guid: f8d6366311b668d4787e8249ce2d457e,
         type: 3}
@@ -13787,6 +13811,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: jarst_bench1 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1404701926589417986, guid: 8c4398cbd857cbf49be17092ae43b200,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1404701926589417986, guid: 8c4398cbd857cbf49be17092ae43b200,
+        type: 3}
+      propertyPath: m_TagString
+      value: Bunker
+      objectReference: {fileID: 0}
     - target: {fileID: 2676784342352377873, guid: 8c4398cbd857cbf49be17092ae43b200,
         type: 3}
       propertyPath: m_RootOrder
@@ -16621,6 +16655,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: jarst_bench1 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1404701926589417986, guid: 8c4398cbd857cbf49be17092ae43b200,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1404701926589417986, guid: 8c4398cbd857cbf49be17092ae43b200,
+        type: 3}
+      propertyPath: m_TagString
+      value: Bunker
+      objectReference: {fileID: 0}
     - target: {fileID: 2676784342352377873, guid: 8c4398cbd857cbf49be17092ae43b200,
         type: 3}
       propertyPath: m_RootOrder
@@ -17505,7 +17549,7 @@ PrefabInstance:
     - target: {fileID: 4090447393486319236, guid: 6b2c7ce3ce7f26c4bb5498e7b5c11e14,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4090447393486319236, guid: 6b2c7ce3ce7f26c4bb5498e7b5c11e14,
         type: 3}
@@ -22019,9 +22063,9 @@ GameObject:
   m_Component:
   - component: {fileID: 537789679}
   - component: {fileID: 537789680}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AI_leftWall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22049,7 +22093,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 537789678}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2, y: 40, z: 480}
@@ -30709,6 +30753,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: jarst_bench (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1383540306554193152, guid: f8d6366311b668d4787e8249ce2d457e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1383540306554193152, guid: f8d6366311b668d4787e8249ce2d457e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Bunker
+      objectReference: {fileID: 0}
     - target: {fileID: 2695416802171680531, guid: f8d6366311b668d4787e8249ce2d457e,
         type: 3}
       propertyPath: m_RootOrder
@@ -36445,9 +36499,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 836729932}
-  m_LocalRotation: {x: 0, y: 0, z: -0.29237175, w: 0.9563048}
-  m_LocalPosition: {x: -2.25, y: 1.46, z: -5.7}
-  m_LocalScale: {x: 0.5468907, y: 1, z: 0.55018944}
+  m_LocalRotation: {x: -0, y: -0, z: -0.29237175, w: 0.9563048}
+  m_LocalPosition: {x: -2.2500045, y: 1.4600003, z: -5.7}
+  m_LocalScale: {x: 0.5468906, y: 0.9999999, z: 0.55018944}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1511532697}
@@ -36891,7 +36945,7 @@ Transform:
   - {fileID: 1879645355}
   - {fileID: 420302470}
   m_Father: {fileID: 1511532697}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &845532451
 GameObject:
@@ -45237,7 +45291,7 @@ Transform:
   - {fileID: 1050096763}
   - {fileID: 198133240}
   m_Father: {fileID: 1511532697}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1060412625
 PrefabInstance:
@@ -53703,6 +53757,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: jarst_bench (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1383540306554193152, guid: f8d6366311b668d4787e8249ce2d457e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1383540306554193152, guid: f8d6366311b668d4787e8249ce2d457e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Bunker
+      objectReference: {fileID: 0}
     - target: {fileID: 2695416802171680531, guid: f8d6366311b668d4787e8249ce2d457e,
         type: 3}
       propertyPath: m_RootOrder
@@ -54265,6 +54329,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: jarst_bench1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1404701926589417986, guid: 8c4398cbd857cbf49be17092ae43b200,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1404701926589417986, guid: 8c4398cbd857cbf49be17092ae43b200,
+        type: 3}
+      propertyPath: m_TagString
+      value: Bunker
       objectReference: {fileID: 0}
     - target: {fileID: 2676784342352377873, guid: 8c4398cbd857cbf49be17092ae43b200,
         type: 3}
@@ -62433,10 +62507,10 @@ Transform:
   - {fileID: 125678724}
   - {fileID: 1866065547}
   - {fileID: 836729933}
+  - {fileID: 124348358}
   - {fileID: 844863235}
   - {fileID: 1539412024}
   - {fileID: 1059728176}
-  - {fileID: 124348358}
   m_Father: {fileID: 1724334327}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -63142,8 +63216,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1404701926589417986, guid: 8c4398cbd857cbf49be17092ae43b200,
         type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1404701926589417986, guid: 8c4398cbd857cbf49be17092ae43b200,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1404701926589417986, guid: 8c4398cbd857cbf49be17092ae43b200,
+        type: 3}
+      propertyPath: m_TagString
+      value: Bunker
       objectReference: {fileID: 0}
     - target: {fileID: 2676784342352377873, guid: 8c4398cbd857cbf49be17092ae43b200,
         type: 3}
@@ -63339,7 +63423,7 @@ Transform:
   - {fileID: 1542698639}
   - {fileID: 275269033}
   m_Father: {fileID: 1511532697}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1540499006 stripped
 GameObject:
@@ -69479,9 +69563,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1680017589}
   - component: {fileID: 1680017590}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AI_rightWall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -72816,6 +72900,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: jarst_bench (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1383540306554193152, guid: f8d6366311b668d4787e8249ce2d457e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1383540306554193152, guid: f8d6366311b668d4787e8249ce2d457e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Bunker
+      objectReference: {fileID: 0}
     - target: {fileID: 2695416802171680531, guid: f8d6366311b668d4787e8249ce2d457e,
         type: 3}
       propertyPath: m_RootOrder
@@ -75765,7 +75859,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1830596288}
   - component: {fileID: 1830596289}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: leg_collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77502,7 +77596,7 @@ PrefabInstance:
     - target: {fileID: 4441987936571696301, guid: b0dc0b79a6a1a1e458d13d2324699115,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4441987936571696301, guid: b0dc0b79a6a1a1e458d13d2324699115,
         type: 3}
@@ -82863,6 +82957,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: jarst_bench (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 1383540306554193152, guid: f8d6366311b668d4787e8249ce2d457e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1383540306554193152, guid: f8d6366311b668d4787e8249ce2d457e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Bunker
+      objectReference: {fileID: 0}
     - target: {fileID: 2695416802171680531, guid: f8d6366311b668d4787e8249ce2d457e,
         type: 3}
       propertyPath: m_RootOrder
@@ -83617,6 +83721,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: jarst_bench1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1404701926589417986, guid: 8c4398cbd857cbf49be17092ae43b200,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1404701926589417986, guid: 8c4398cbd857cbf49be17092ae43b200,
+        type: 3}
+      propertyPath: m_TagString
+      value: Bunker
       objectReference: {fileID: 0}
     - target: {fileID: 2676784342352377873, guid: 8c4398cbd857cbf49be17092ae43b200,
         type: 3}
