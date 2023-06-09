@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     public float m_fSpeed;
     public Transform m_CameraTransform;
+    public EventUI m_ClearUI;
 
     private Rigidbody m_Rigidbody;
     private Vector3 m_vMoveVec;
@@ -126,13 +127,16 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("stair"))
         {
-            m_Rigidbody.AddForce(transform.forward * m_fTotalSpeed*0.4f, ForceMode.VelocityChange);
+            m_Rigidbody.AddForce(transform.forward * m_fTotalSpeed * 0.4f, ForceMode.VelocityChange);
         }
         else if (collision.gameObject.CompareTag("Obstacle"))//낙하물 충돌
         {
             float fDamage = collision.gameObject.GetComponent<FallingObject>().Get_Damage();
             m_Status.Set_Damage(fDamage);
         }
-
+        else if (collision.gameObject.CompareTag("Goal"))
+        {
+            m_ClearUI.Activate_and_Over();
+        }
     }
 }
