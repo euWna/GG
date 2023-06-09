@@ -47,7 +47,7 @@ public class CharacterStatus : MonoBehaviour
     public void Set_Damage(float fDamage)
     {
         m_fHP -= fDamage;
-        if(0f > m_fHP)
+        if(0f >= m_fHP)
         {
             m_fHP = 0;
             m_Target.Set_Dead();
