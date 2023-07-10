@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/GG/GameScenes/subway.unity
     guid: dbc7fa3698e52774e8be070425b6afa4
+  - enabled: 1
+    path: Assets/GG/GameScenes/RoomCode.unity
+    guid: c022d3767c4356f45b4abdee4ec31b79
   m_configObjects: {}
