@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 public class UIButton : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -10,11 +11,10 @@ public class UIButton : MonoBehaviour
         
     }
 
-    // Update is called once per frame
     public void Lobby_Multi()
     {
         Debug.Log("Multi Playing Mode");
-        SceneManager.LoadScene("Lobby");
+        NetworkManager.Instance.ConnectToServer();
     }
     public void Lobby_Single()
     {
@@ -32,5 +32,17 @@ public class UIButton : MonoBehaviour
     {
         Debug.Log("Exit Lobby");
         SceneManager.LoadScene("MenuUI");
+    }
+
+    public void Exit_Multi()
+    {
+        Debug.Log("Exit_Multi");
+        NetworkManager.Instance.LeaveLobby();
+    }
+
+    ///multi///
+    public void Multi_EnterCode(InputField In_RoomCode)
+    {
+        NetworkManager.Instance.JoinRoom(In_RoomCode);
     }
 }
