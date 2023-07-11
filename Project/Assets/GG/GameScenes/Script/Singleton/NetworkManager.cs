@@ -103,13 +103,6 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         m_RoomCode = null;
         PhotonNetwork.LeaveRoom();
     }
-    private void Disconnect() => PhotonNetwork.Disconnect();
-    public override void OnDisconnected(DisconnectCause cause)
-    {
-        Debug.Log("연결끊김");
-        SceneManager.LoadScene("MenuUI");
-    }
-
     public void LeaveLobby()
     {
         PhotonNetwork.LeaveLobby();
@@ -119,6 +112,13 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         Debug.Log("로비나감");
         Disconnect();
     }
+    private void Disconnect() => PhotonNetwork.Disconnect();
+    public override void OnDisconnected(DisconnectCause cause)
+    {
+        Debug.Log("연결끊김");
+        SceneManager.LoadScene("MenuUI");
+    }
+
 
 
     public override void OnJoinRoomFailed(short returnCode, string message) => print("방참가실패");
