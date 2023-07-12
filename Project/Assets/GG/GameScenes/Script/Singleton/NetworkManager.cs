@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
-using UnityEngine.UI;
+using TMPro;
 using UnityEngine.SceneManagement;
 
 public class NetworkManager : MonoBehaviourPunCallbacks
@@ -11,7 +11,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     private static NetworkManager m_Instance = null;
     public const int m_iMaxPlayer = 8; 
 
-    public InputField m_RoomCode, m_NickNameInput;
+    public TMP_InputField m_RoomCode, m_NickNameInput;
 
     void Awake()
     {
@@ -75,24 +75,25 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
    
    
-    public void CreateRoom(InputField In_RoomCode)
+    public void CreateRoom(TMP_InputField In_RoomCode)
     {
         m_RoomCode = In_RoomCode;
         PhotonNetwork.CreateRoom(m_RoomCode.text, new RoomOptions { MaxPlayers = m_iMaxPlayer });
     }
     public override void OnCreatedRoom()
     {
+        Debug.Log("방 생성");
         SceneManager.LoadScene("MultiLobby");
-
     }
 
-    public void JoinRoom(InputField In_RoomCode)
+    public void JoinRoom(TMP_InputField In_RoomCode)
     {
         m_RoomCode = In_RoomCode;
         PhotonNetwork.JoinRoom(m_RoomCode.text);
     }
     public override void OnJoinedRoom()
     {
+        Debug.Log("방 입장");
         SceneManager.LoadScene("MultiLobby");
 
     }
@@ -102,6 +103,10 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         m_RoomCode = null;
         PhotonNetwork.LeaveRoom();
+    }
+    public override void OnLeftRoom()
+    {
+        Debug.Log("방 나감");
     }
     public void LeaveLobby()
     {
@@ -121,7 +126,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
 
 
-    public override void OnJoinRoomFailed(short returnCode, string message) => print("방참가실패");
+    public override void OnJoinRoomFailed(short returnCode, string message) => Debug.Log("방참가실패");
 
     [ContextMenu("정보")]
     void Info()
