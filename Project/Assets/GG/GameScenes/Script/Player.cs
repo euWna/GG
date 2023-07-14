@@ -1,38 +1,69 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Cinemachine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviourPun
 {
     // Start is called before the first frame update
     public float m_fSpeed;
-    public Transform m_CameraTransform;
     public EventUI m_ClearUI;
+    public float m_fRotateSpeed = 250f;
+
+    private float m_fXRotate, m_fYRotate;
+    private float m_XTotalRot, m_YTotalrot;
 
     private Rigidbody m_Rigidbody;
     private Vector3 m_vMoveVec;
     private Animator m_Animator;
-
+     
     private bool m_bIsRun = false;
     private bool m_bIsSprint = false;
 
     private float m_fTotalSpeed;
 
     private CharacterStatus m_Status;
+    private Transform m_CameraTransform;
 
     void Start()
     {
         m_Animator = GetComponentInChildren<Animator>();
         m_Status = GetComponentInChildren<CharacterStatus>();
         m_Rigidbody = GetComponent<Rigidbody>();
+
+        if (photonView.IsMine)
+        {
+            CinemachineVirtualCamera Temp = FindObjectOfType<CinemachineVirtualCamera>();
+            Temp.Follow = this.transform;
+            Temp.LookAt = this.transform;
+            m_CameraTransform = Temp.transform;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        Move();
+        if (photonView.IsMine)
+        {
+            Move();
+        }
     }
+    private void Get_MouseMovement()
+    {
+        // m_fXRotate += -Input.GetAxis("Mouse Y") * Time.deltaTime * 0.1f;
+        // m_fYRotate += Input.GetAxis("Mouse X") * Time.deltaTime * 0.1f;
 
+        m_fXRotate = -Input.GetAxis("Mouse Y") * Time.deltaTime * m_fRotateSpeed;
+        m_fYRotate = Input.GetAxis("Mouse X") * Time.deltaTime * m_fRotateSpeed;
+
+        m_YTotalrot += m_fYRotate;
+        m_XTotalRot += m_fXRotate;
+
+        m_XTotalRot = Mathf.Clamp(m_XTotalRot, -90, 90);
+
+        transform.eulerAngles = new Vector3(m_XTotalRot, m_YTotalrot, 0);
+    }
     private void Get_KeyInput()
     {
         m_vMoveVec = Vector3.zero;
@@ -84,6 +115,7 @@ public class Player : MonoBehaviour
     private void Move()
     {
         m_fTotalSpeed = 0f;
+       // Get_MouseMovement();
         Get_KeyInput();
         Run();
         //transform.position += m_vMoveVec * m_fTotalSpeed * Time.deltaTime;

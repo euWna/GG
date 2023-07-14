@@ -16,6 +16,7 @@ TagManager:
   - AI
   - stair
   - Falling
+  - FollowCam
   layers:
   - Default
   - TransparentFX

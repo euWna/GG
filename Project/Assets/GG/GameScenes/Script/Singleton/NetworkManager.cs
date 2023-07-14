@@ -79,22 +79,24 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         m_RoomCode = In_RoomCode;
         PhotonNetwork.CreateRoom(m_RoomCode.text, new RoomOptions { MaxPlayers = m_iMaxPlayer });
+        SceneManager.LoadScene("MultiLobby");
     }
     public override void OnCreatedRoom()
     {
         Debug.Log("방 생성");
-        SceneManager.LoadScene("MultiLobby");
     }
 
     public void JoinRoom(TMP_InputField In_RoomCode)
     {
         m_RoomCode = In_RoomCode;
         PhotonNetwork.JoinRoom(m_RoomCode.text);
+        SceneManager.LoadScene("MultiLobby");
     }
     public override void OnJoinedRoom()
     {
+        //이게 현재 접속하는 플레이어인지 아니면 모든 접속하는 플레이어에 대해서 실행하는지 확인
         Debug.Log("방 입장");
-        SceneManager.LoadScene("MultiLobby");
+        PhotonNetwork.Instantiate("Local_Player", Vector3.zero, Quaternion.identity);//현재 접속하는 플레이어 모델 씬으로 불러옴
 
     }
 

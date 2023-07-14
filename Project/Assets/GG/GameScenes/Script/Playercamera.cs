@@ -1,28 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class Playercamera : MonoBehaviour
 {
-    public Transform m_PlayerTransform;
     public Vector3 m_vOffset;
     public float m_fRotateSpeed = 250f; 
+    public CinemachineVirtualCamera m_CamTransform;
 
+    private Transform m_TargetTransform;
     private float m_fXRotate, m_fYRotate;
     private float m_XTotalRot, m_YTotalrot;
     void Start()
     {
         
     }
-
+    
     // Update is called once per frame
     void Update()
     {
         Get_MouseMovement();
-        transform.position = m_PlayerTransform.position + m_vOffset.z*transform.forward + m_vOffset.y * transform.up;
+        if(m_TargetTransform == null)
+        {
+            m_TargetTransform = m_CamTransform.Follow;
+        } 
+        
+        transform.position = m_TargetTransform.position + m_vOffset.z*transform.forward + m_vOffset.y * transform.up;
 
-        Vector3 vLookatPosition = m_PlayerTransform.position + new Vector3(0f, 1.5f, 0f);
-        transform.LookAt(vLookatPosition);
+        Vector3 vLookatPosition = m_TargetTransform.position + new Vector3(0f, 10f, 0f);
+        transform.LookAt( vLookatPosition);
     }
 
     private void Get_MouseMovement()
