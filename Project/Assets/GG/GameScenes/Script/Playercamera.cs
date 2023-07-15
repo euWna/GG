@@ -16,20 +16,22 @@ public class Playercamera : MonoBehaviour
     {
         
     }
-    
+
     // Update is called once per frame
     void Update()
     {
         Get_MouseMovement();
-        if(m_TargetTransform == null)
+        if (m_CamTransform.Follow != null)
         {
             m_TargetTransform = m_CamTransform.Follow;
-        } 
-        
-        transform.position = m_TargetTransform.position + m_vOffset.z*transform.forward + m_vOffset.y * transform.up;
+        }
+        if (m_TargetTransform != null)
+        {
+            transform.position = m_TargetTransform.position + m_vOffset.z * transform.forward + m_vOffset.y * transform.up;
 
-        Vector3 vLookatPosition = m_TargetTransform.position + new Vector3(0f, 10f, 0f);
-        transform.LookAt( vLookatPosition);
+            Vector3 vLookatPosition = m_TargetTransform.position + new Vector3(0f, 10f, 0f);
+            transform.LookAt(vLookatPosition);
+        }
     }
 
     private void Get_MouseMovement()

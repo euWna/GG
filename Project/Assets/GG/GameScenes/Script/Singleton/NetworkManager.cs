@@ -130,6 +130,12 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinRoomFailed(short returnCode, string message) => Debug.Log("방참가실패");
 
+    public void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
+    {
+        Debug.Log("게임 시작 & 플레이어 로드");
+        PhotonNetwork.Instantiate("Local_Player", Vector3.zero, Quaternion.identity);
+    }
+
     [ContextMenu("정보")]
     void Info()
     {

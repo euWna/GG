@@ -47,6 +47,12 @@ public class Player : MonoBehaviourPun
         if (photonView.IsMine)
         {
             Move();
+
+            //Temp
+            if (Input.GetKey(KeyCode.T))
+            {
+                m_Status.Set_Damage(1);
+            }
         }
     }
     private void Get_MouseMovement()

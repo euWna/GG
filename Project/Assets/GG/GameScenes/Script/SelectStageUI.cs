@@ -26,6 +26,12 @@ public class SelectStageUI : MonoBehaviour
         SceneManager.LoadScene(SelectedStage.text);
     }
 
+    //멀티 게임 임시
+    public void Temp_StartGame()
+    {
+        SceneManager.sceneLoaded += NetworkManager.Instance.OnSceneLoaded;
+        SceneManager.LoadScene("Multi_Subway");
+    }
     public void Exit_Stage()
     {
         SceneManager.LoadScene("Lobby");
@@ -37,7 +43,7 @@ public class SelectStageUI : MonoBehaviour
         switch(m_iStageIndex)
         {
             case 0:
-                SelectedStage.text = "Subway";
+                SelectedStage.text = "Multi_Subway";//잠깐 멀티로
                 mapImage.sprite = subway;
 
                 break;

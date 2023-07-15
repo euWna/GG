@@ -50,4 +50,10 @@ public class UIButton : MonoBehaviour
     {//나중에 초대 코드로
         NetworkManager.Instance.CreateRoom(m_RoomCode);
     }
+
+    public void Multi_ExitGame()
+    {
+        Debug.Log("Multi_ExitGame");
+        SceneManager.LoadScene("MultiLobby");
+    }
 }
