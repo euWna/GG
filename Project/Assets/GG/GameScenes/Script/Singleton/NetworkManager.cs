@@ -9,7 +9,8 @@ using UnityEngine.SceneManagement;
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
     private static NetworkManager m_Instance = null;
-    public const int m_iMaxPlayer = 8; 
+    public const int m_iMaxPlayer = 8;
+
 
     public TMP_InputField m_RoomCode, m_NickNameInput;
 
@@ -31,7 +32,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         get
         {
-            if(null == m_Instance)
+            if (null == m_Instance)
             {
                 return null;
             }
@@ -43,19 +44,18 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     void Start()
     {
         Screen.SetResolution(960, 600, false);
-       
+
     }
     void Update()
     {
-        PhotonNetwork.NetworkClientState.ToString();
+       // Debug.Log(PhotonNetwork.NetworkClientState.ToString());
     }
-
     //////////////////////////////////////////////////////////////
 
     public void ConnectToServer()
     {
         PhotonNetwork.ConnectUsingSettings();
-       
+
         //바로 서버 연결
     }
     public override void OnConnectedToMaster()
@@ -73,13 +73,12 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     }
 
 
-   
-   
+
+
     public void CreateRoom(TMP_InputField In_RoomCode)
     {
         m_RoomCode = In_RoomCode;
         PhotonNetwork.CreateRoom(m_RoomCode.text, new RoomOptions { MaxPlayers = m_iMaxPlayer });
-        SceneManager.LoadScene("MultiLobby");
     }
     public override void OnCreatedRoom()
     {
@@ -90,16 +89,18 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         m_RoomCode = In_RoomCode;
         PhotonNetwork.JoinRoom(m_RoomCode.text);
-        SceneManager.LoadScene("MultiLobby");
     }
     public override void OnJoinedRoom()
     {
-        //이게 현재 접속하는 플레이어인지 아니면 모든 접속하는 플레이어에 대해서 실행하는지 확인
+        //모든 접속하는 플레이어에 대해서 실행
         Debug.Log("방 입장");
-        PhotonNetwork.Instantiate("Local_Player", Vector3.zero, Quaternion.identity);//현재 접속하는 플레이어 모델 씬으로 불러옴
-
+        PhotonNetwork.LoadLevel("MultiLobby");
     }
-
+    
+    public void StartGame(string In_StageName )
+    {
+        PhotonNetwork.LoadLevel(In_StageName);
+    }
 
     public void LeaveRoom()
     {
@@ -110,8 +111,10 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("방 나감");
     }
+//======================================================
     public void LeaveLobby()
     {
+        Debug.Log("로비 나가는 중");
         PhotonNetwork.LeaveLobby();
     }
     public override void OnLeftLobby()
@@ -119,6 +122,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         Debug.Log("로비나감");
         Disconnect();
     }
+
+    
+
     private void Disconnect() => PhotonNetwork.Disconnect();
     public override void OnDisconnected(DisconnectCause cause)
     {
@@ -128,12 +134,10 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
 
 
-    public override void OnJoinRoomFailed(short returnCode, string message) => Debug.Log("방참가실패");
-
-    public void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
+    public override void OnJoinRoomFailed(short returnCode, string message)
     {
-        Debug.Log("게임 시작 & 플레이어 로드");
-        PhotonNetwork.Instantiate("Local_Player", Vector3.zero, Quaternion.identity);
+        Debug.Log("방입장실패");
+        JoinLobby();
     }
 
     [ContextMenu("정보")]

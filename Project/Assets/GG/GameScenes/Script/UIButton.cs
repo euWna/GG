@@ -28,7 +28,7 @@ public class UIButton : MonoBehaviour
 
         Application.Quit();
     }
-
+    ///multi///
     public void Exit_Room()
     {
         NetworkManager.Instance.LeaveRoom();//방 나가면 바로 메인메뉴로
@@ -39,8 +39,7 @@ public class UIButton : MonoBehaviour
         Debug.Log("Exit_Multi");
         NetworkManager.Instance.LeaveLobby();
     }
-
-    ///multi///
+ 
     public void Multi_EnterCode()
     {
         NetworkManager.Instance.JoinRoom(m_RoomCode);

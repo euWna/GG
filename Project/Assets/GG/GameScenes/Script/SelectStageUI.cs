@@ -4,9 +4,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using Photon.Pun;
 
 public class SelectStageUI : MonoBehaviour
 {
+    public PhotonView m_PV;
 
     public TextMeshProUGUI SelectedStage;
     public Image mapImage;
@@ -17,21 +19,20 @@ public class SelectStageUI : MonoBehaviour
     private int m_iStageIndex = 0;
     void Start()
     {
-        
+        if (PhotonNetwork.IsMasterClient)
+            this.enabled = false;
     }
 
-    // Update is called once per frame
+    public void Temp_StartGame()
+    {
+        m_PV.RPC("StartGame", RpcTarget.All);
+    }
+
     public void Game_Start()
     {
         SceneManager.LoadScene(SelectedStage.text);
     }
 
-    //멀티 게임 임시
-    public void Temp_StartGame()
-    {
-        SceneManager.sceneLoaded += NetworkManager.Instance.OnSceneLoaded;
-        SceneManager.LoadScene("Multi_Subway");
-    }
     public void Exit_Stage()
     {
         SceneManager.LoadScene("Lobby");
@@ -53,5 +54,12 @@ public class SelectStageUI : MonoBehaviour
                 break;
         }
         //SelectedStage.text = sz_SelectedStage;
+    }
+
+    //멀티 게임 임시
+    [PunRPC]
+    void StartGame()
+    {
+        NetworkManager.Instance.StartGame("Multi_Subway");
     }
 }
