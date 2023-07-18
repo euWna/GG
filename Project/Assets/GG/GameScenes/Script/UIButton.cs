@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+
 public class UIButton : MonoBehaviour
 {
     // Start is called before the first frame update
     public TMP_InputField m_RoomCode;
+
+    private ChangeAvatar m_LocalChangeAvatar;
+
     void Start()
     {
         
@@ -28,10 +32,22 @@ public class UIButton : MonoBehaviour
 
         Application.Quit();
     }
+
+    public void Change_Avatar()
+    {
+        if(null == m_LocalChangeAvatar)
+        {
+            m_LocalChangeAvatar = GameMgr.Instance.m_LocalPlayerObj.GetComponentInChildren<ChangeAvatar>();
+        }
+        m_LocalChangeAvatar.Change_Avatar();
+    }
+
     ///multi///
     public void Exit_Room()
     {
-        NetworkManager.Instance.LeaveRoom();//방 나가면 바로 메인메뉴로
+        NetworkManager.Instance.LeaveRoom();
+        GameMgr.Instance.Destroy_Player();
+        GameMgr.Instance.Destroy_Myself();
     }
 
     public void Exit_RoomCode()
@@ -55,4 +71,5 @@ public class UIButton : MonoBehaviour
         Debug.Log("Multi_ExitGame");
         SceneManager.LoadScene("MultiLobby");
     }
+
 }

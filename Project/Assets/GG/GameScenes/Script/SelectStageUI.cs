@@ -19,11 +19,10 @@ public class SelectStageUI : MonoBehaviour
     private int m_iStageIndex = 0;
     void Start()
     {
-        if (PhotonNetwork.IsMasterClient)
-            this.enabled = false;
+       
     }
 
-    public void Temp_StartGame()
+    public void Multi_StartGame()
     {
         m_PV.RPC("StartGame", RpcTarget.All);
     }

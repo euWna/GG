@@ -95,6 +95,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         //모든 접속하는 플레이어에 대해서 실행
         Debug.Log("방 입장");
         PhotonNetwork.LoadLevel("MultiLobby");
+        
     }
     
     public void StartGame(string In_StageName )

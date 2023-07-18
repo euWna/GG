@@ -13,6 +13,9 @@ public class Billboard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(null == m_MainCamTransform)
+            m_MainCamTransform = Camera.main.transform;
+
         transform.LookAt(m_MainCamTransform.position);
     }
 }

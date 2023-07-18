@@ -28,17 +28,16 @@ public class Player : MonoBehaviourPun
 
     void Start()
     {
-        m_Animator = GetComponentInChildren<Animator>();
         m_Status = GetComponentInChildren<CharacterStatus>();
         m_Rigidbody = GetComponent<Rigidbody>();
 
         if (photonView.IsMine)
         {
-            CinemachineVirtualCamera Temp = FindObjectOfType<CinemachineVirtualCamera>();
-            Temp.Follow = this.transform;
-            Temp.LookAt = this.transform;
-            m_CameraTransform = Temp.transform;
+            GameMgr.Instance.m_LocalPlayerObj = this.gameObject;
+            GameMgr.Instance.m_LocalPlayer = this;
+            GameMgr.Instance.Set_Camera();
         }
+        DontDestroyOnLoad(this.gameObject);
     }
 
     // Update is called once per frame
@@ -53,6 +52,21 @@ public class Player : MonoBehaviourPun
             {
                 m_Status.Set_Damage(1);
             }
+        }
+    }
+
+    public void Change_Animator(Animator In_Animator)
+    {
+        m_Animator = In_Animator;
+    }
+
+    public void Set_Camera(CinemachineVirtualCamera In_Camera)
+    {
+        if (photonView.IsMine)
+        {
+            In_Camera.Follow = this.transform;
+            In_Camera.LookAt = this.transform;
+            m_CameraTransform = In_Camera.transform;
         }
     }
     private void Get_MouseMovement()
@@ -110,7 +124,7 @@ public class Player : MonoBehaviourPun
         m_vMoveVec = m_vMoveVec.normalized;
         Vector3 vPlayerRight = Vector3.Cross(Vector3.up, m_vMoveVec);
         m_vMoveVec = Vector3.Cross(vPlayerRight, Vector3.up).normalized;
-
+        
         m_Animator.SetBool("IsRun", m_bIsRun);
 
     }
