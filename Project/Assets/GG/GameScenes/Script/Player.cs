@@ -23,12 +23,12 @@ public class Player : MonoBehaviourPun
 
     private float m_fTotalSpeed;
 
-    private CharacterStatus m_Status;
+    private Status m_Status;
     private Transform m_CameraTransform;
 
     void Start()
     {
-        m_Status = GetComponentInChildren<CharacterStatus>();
+        m_Status = GetComponentInChildren<Status>();
         m_Rigidbody = GetComponent<Rigidbody>();
 
         if (photonView.IsMine)

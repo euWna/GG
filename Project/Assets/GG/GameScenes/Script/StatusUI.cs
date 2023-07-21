@@ -6,7 +6,7 @@ using TMPro;
 public class StatusUI : MonoBehaviour
 {
 
-    public CharacterStatus m_PlayerStatus;
+    public Status m_PlayerStatus;
 
     public TextMeshProUGUI m_HPUI;
     public TextMeshProUGUI m_StaminaUI;

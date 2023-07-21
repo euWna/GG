@@ -8,7 +8,7 @@ public class StatusBar : MonoBehaviour
 {
     public Image m_HPImage;
 
-    public CharacterStatus m_PlayerStatus;
+    public Status m_PlayerStatus;
 
     
     private float m_fLeft;
