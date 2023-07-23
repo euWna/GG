@@ -30,6 +30,10 @@ public class GameMgr : MonoBehaviourPunCallbacks, IPunObservable
             DontDestroyOnLoad(this.gameObject);
         }
 
+    }
+
+    void start()
+    {
 
     }
     public static GameMgr Instance

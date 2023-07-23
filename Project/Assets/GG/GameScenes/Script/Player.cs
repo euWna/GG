@@ -4,12 +4,13 @@ using UnityEngine;
 using Photon.Pun;
 using Cinemachine;
 
-public class Player : MonoBehaviourPun
+public class Player : MonoBehaviour
 {
     // Start is called before the first frame update
     public float m_fSpeed;
     public EventUI m_ClearUI;
     public float m_fRotateSpeed = 250f;
+    public PhotonView m_PV = null;
 
     private float m_fXRotate, m_fYRotate;
     private float m_XTotalRot, m_YTotalrot;
@@ -24,35 +25,41 @@ public class Player : MonoBehaviourPun
     private float m_fTotalSpeed;
 
     private CharacterStatus m_Status;
-    private Transform m_CameraTransform;
+    public Transform m_CameraTransform;
+
+    private delegate void MoveFunc();
+
+    private MoveFunc m_Moving;
 
     void Start()
     {
         m_Status = GetComponentInChildren<CharacterStatus>();
         m_Rigidbody = GetComponent<Rigidbody>();
 
-        if (photonView.IsMine)
+        if (m_PV != null)
         {
-            GameMgr.Instance.m_LocalPlayerObj = this.gameObject;
-            GameMgr.Instance.m_LocalPlayer = this;
-            GameMgr.Instance.Set_Camera();
+            if (m_PV.IsMine)
+            {
+                GameMgr.Instance.m_LocalPlayerObj = this.gameObject;
+                GameMgr.Instance.m_LocalPlayer = this;
+                GameMgr.Instance.Set_Camera();
+            }
+            m_Moving = new MoveFunc(Move_MultiMode);
+            
         }
+        else
+        {
+            m_Animator = GetComponentInChildren<Animator>();
+            m_Moving = new MoveFunc(Move);
+        }
+
         DontDestroyOnLoad(this.gameObject);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (photonView.IsMine)
-        {
-            Move();
-
-            //Temp
-            if (Input.GetKey(KeyCode.T))
-            {
-                m_Status.Set_Damage(1);
-            }
-        }
+        m_Moving();
     }
 
     public void Change_Animator(Animator In_Animator)
@@ -62,7 +69,7 @@ public class Player : MonoBehaviourPun
 
     public void Set_Camera(CinemachineVirtualCamera In_Camera)
     {
-        if (photonView.IsMine)
+        if (m_PV.IsMine)
         {
             In_Camera.Follow = this.transform;
             In_Camera.LookAt = this.transform;
@@ -132,6 +139,18 @@ public class Player : MonoBehaviourPun
     {
         m_Animator.SetTrigger("Death");
     }
+    private void Move_MultiMode()
+    {
+        if (m_PV.IsMine)
+        {
+            Move();
+
+            if (Input.GetKey(KeyCode.T))
+            {
+                m_Status.Set_Damage(1f);
+            }
+        }
+    }
     private void Move()
     {
         m_fTotalSpeed = 0f;
@@ -158,6 +177,7 @@ public class Player : MonoBehaviourPun
         }
     }
 
+   
     private void Run()
     {
         m_bIsSprint = false;

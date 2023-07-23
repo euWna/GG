@@ -17,5 +17,6 @@ public class Billboard : MonoBehaviour
             m_MainCamTransform = Camera.main.transform;
 
         transform.LookAt(m_MainCamTransform.position);
+       // transform.rotation = Quaternion.Euler(0f, 180f, 0f);
     }
 }

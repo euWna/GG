@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class CharacterStatus : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class CharacterStatus : MonoBehaviour
 
     public float m_fMaxHP;
     public float m_fMaxStamina;
+
+    public PhotonView m_PV;
 
     private bool m_bIsUsable = true;
     private float m_fHP;
@@ -46,13 +49,7 @@ public class CharacterStatus : MonoBehaviour
 
     public void Set_Damage(float fDamage)
     {
-        m_fHP -= fDamage;
-        if(0f >= m_fHP)
-        {
-            m_fHP = 0;
-            m_Target.Set_Dead();
-            m_EventUI.Activate_and_Over();
-        }
+        m_PV.RPC("Damaging", RpcTarget.All, fDamage);
     }
     public bool Is_Usable()
     {
@@ -76,5 +73,18 @@ public class CharacterStatus : MonoBehaviour
 
         if (m_fStamina > m_fMaxStamina)
             m_fStamina = m_fMaxStamina;
+    }
+
+    [PunRPC]
+
+    private void Damaging(float fDamage)
+    {
+        m_fHP -= fDamage;
+        if (0f >= m_fHP)
+        {
+            m_fHP = 0;
+            m_Target.Set_Dead();
+            m_EventUI.Activate_and_Over();
+        }
     }
 }

@@ -177,6 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e01c470191acc8f4c829e501cd45c65c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_PV: {fileID: 0}
   SelectedStage: {fileID: 0}
   mapImage: {fileID: 0}
   subway: {fileID: 0}
@@ -5926,7 +5927,7 @@ PrefabInstance:
     - target: {fileID: 6252356961377389083, guid: 2db03e7c8a8135146b280e5da7e0289c,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6252356961377389083, guid: 2db03e7c8a8135146b280e5da7e0289c,
         type: 3}
@@ -66463,8 +66464,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_fSpeed: 50
-  m_CameraTransform: {fileID: 1645466729}
   m_ClearUI: {fileID: 1936901384}
+  m_fRotateSpeed: 250
+  m_PV: {fileID: 0}
+  m_CameraTransform: {fileID: 1645466729}
 --- !u!54 &1582767213
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -69697,9 +69700,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38b51e351a5438c43a7d63090c185ff8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PlayerTransform: {fileID: 1582767214}
   m_vOffset: {x: 0, y: 36, z: -60}
   m_fRotateSpeed: 250
+  m_CamTransform: {fileID: 0}
+  m_TargetTransform: {fileID: 1582767214}
 --- !u!81 &1645466731
 AudioListener:
   m_ObjectHideFlags: 0
