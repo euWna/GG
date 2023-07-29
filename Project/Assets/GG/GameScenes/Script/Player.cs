@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 {
     // Start is called before the first frame update
     public float m_fSpeed;
+    public float m_fJumpScale;
     public EventUI m_ClearUI;
     public float m_fRotateSpeed = 250f;
     public PhotonView m_PV = null;
@@ -21,6 +22,7 @@ public class Player : MonoBehaviour
      
     private bool m_bIsRun = false;
     private bool m_bIsSprint = false;
+    private bool m_bIsJump = false;
 
     private float m_fTotalSpeed;
 
@@ -123,16 +125,12 @@ public class Player : MonoBehaviour
 
         }
 
-        if(Input.GetKey(KeyCode.O))
-        {
-            m_Status.Set_Damage(100f);
-        }
-
         m_vMoveVec = m_vMoveVec.normalized;
         Vector3 vPlayerRight = Vector3.Cross(Vector3.up, m_vMoveVec);
         m_vMoveVec = Vector3.Cross(vPlayerRight, Vector3.up).normalized;
-        
-        m_Animator.SetBool("IsRun", m_bIsRun);
+
+        if(!m_bIsJump)//점프하는 중이라면 run 애니메이션 재생 안되게
+            m_Animator.SetBool("IsRun", m_bIsRun);
 
     }
     public void Set_Dead()
@@ -163,6 +161,8 @@ public class Player : MonoBehaviour
         m_Rigidbody.AddForce(Physics.gravity);
         m_Rigidbody.angularVelocity = new Vector3(0f, 0f, 0f);
 
+        Jump_Up();
+
         if (Mathf.Abs(m_Rigidbody.velocity.x) > m_fTotalSpeed)
         {
             m_Rigidbody.velocity = new Vector3(Mathf.Sign(m_Rigidbody.velocity.x) * m_fTotalSpeed, m_Rigidbody.velocity.y, m_Rigidbody.velocity.z);
@@ -181,7 +181,7 @@ public class Player : MonoBehaviour
     private void Run()
     {
         m_bIsSprint = false;
-        if (m_bIsRun && m_Status.Is_Usable())
+        if (m_bIsRun && !m_bIsJump && m_Status.Is_Usable())
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {
@@ -194,6 +194,22 @@ public class Player : MonoBehaviour
         m_Animator.SetBool("IsSprint", m_bIsSprint);
 
     }
+
+    private void Jump_Up()//바닥 ground와 충돌하면 down으로 이어지게. 지금은 임시로 jump 하나만 작동하도록
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (!m_bIsJump && m_Status.Is_Usable())
+            {
+                m_bIsJump = true;
+                m_Animator.SetBool("IsJump", m_bIsJump);
+                m_Animator.SetTrigger("Jump_Up");
+
+                m_Rigidbody.AddForce(Vector3.up * m_fJumpScale);
+            }
+        }
+    }
+
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -209,6 +225,12 @@ public class Player : MonoBehaviour
         else if (collision.gameObject.CompareTag("Goal"))
         {
             m_ClearUI.Activate_and_Over();
+        }
+        else if( collision.gameObject.CompareTag("Ground"))
+        {//땅에 닿아서 착지 애니메이션으로 이동
+            m_bIsJump = false;
+            m_Animator.SetBool("IsJump", m_bIsJump);
+            //m_Animator.SetTrigger("Jump_Down");//착지 애니메이션으로 이어지도록
         }
     }
 }
